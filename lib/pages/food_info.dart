@@ -57,7 +57,7 @@ class FoodInfo extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Text(information['sent'], style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w600, color: Color(0xFFB89C3A))),
+                        Text('\$${information['sent']}', style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w600, color: Color(0xFFB89C3A))),
                       ],
                     ),
                   ),
@@ -87,6 +87,8 @@ class FoodInfo extends StatelessWidget {
                       foodSena.add(information['sent']);
                       item['current']++;
                       Navigator.pushNamed(context, '/home-page');
+                      currentindex.add(1);
+                      item['total'] += information['sent'];
                     },
                     child: const Text('Add to cart', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w500)),
                   ),

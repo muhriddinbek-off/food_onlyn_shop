@@ -14,7 +14,6 @@ class ByFood extends StatefulWidget {
 }
 
 class _ByFoodState extends State<ByFood> {
-  int add = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,23 +51,25 @@ class _ByFoodState extends State<ByFood> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(foodName[index], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                                    Text(foodSena[index], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFFB89C3A), height: 1.8)),
+                                    Text('\$${foodSena[index]}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFFB89C3A), height: 1.8)),
                                     Row(
                                       children: [
                                         IconButton(
                                             onPressed: () {
                                               setState(() {});
-                                              add++;
+                                              currentindex[index]++;
+                                              item['total'] += foodSena[index];
                                             },
                                             icon: const Icon(Icons.add_circle, color: Color(0xFF8058CB))),
-                                        Text('$add', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Color(0xFF5817E1))),
+                                        Text('${currentindex[index]}', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Color(0xFF5817E1))),
                                         IconButton(
                                             onPressed: () {
                                               setState(() {});
-                                              if (add > 1) {
-                                                add--;
+                                              if (currentindex[index] > 1) {
+                                                currentindex[index]--;
+                                                item['total'] -= foodSena[index];
                                               } else {
-                                                add = 1;
+                                                currentindex[index] = 1;
                                               }
                                             },
                                             icon: const Icon(Icons.remove_circle, color: Color(0xFF8058CB))),
@@ -85,6 +86,7 @@ class _ByFoodState extends State<ByFood> {
                               setState(() {});
                               photo.remove(photo[index]);
                               foodName.remove(foodName[index]);
+                              item['total'] -= foodSena[index];
                               foodSena.remove(foodSena[index]);
                               item['current']--;
                             },
@@ -92,10 +94,10 @@ class _ByFoodState extends State<ByFood> {
                       );
                     })),
             const Inctruction(),
-            const SizedBox(height: 45),
+            const SizedBox(height: 25),
             const Total(),
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 40),
+              padding: EdgeInsets.symmetric(vertical: 24),
               child: ButtonChekout(),
             ),
           ],

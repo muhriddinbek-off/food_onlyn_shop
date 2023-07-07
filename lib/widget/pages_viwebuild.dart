@@ -33,7 +33,7 @@ class PagesBuild extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(argument['sent'], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color(0xFFB89C3A))),
+                        Text('\$${argument['sent']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color(0xFFB89C3A))),
                         const Icon(Icons.add_circle, color: Color(0xFFB89C3A)),
                       ],
                     ),
